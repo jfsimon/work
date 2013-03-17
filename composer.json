@@ -10,9 +10,8 @@
     "require": {
         "php": ">=5.3.0",
         "doctrine/orm": "dev-master",
-        "symfony/yaml": "dev-master",
         "symfony/console": "dev-master",
-        "symfony/config": "dev-master",
-        "symfony/process": "dev-master"
+        "symfony/finder": "dev-master",
+        "knplabs/github-api": "dev-master"
     }
 }

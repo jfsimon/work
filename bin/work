@@ -1,0 +1,11 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__.'/../vendor/autoload.php';
+
+use Jfsimon\Work\Application;
+use Jfsimon\Work\Factory;
+use Symfony\Component\Console\Input\ArgvInput;
+
+$application = new Application(new Factory(parse_ini_file(__DIR__.'/../app/config.ini')));
+$application->run(new ArgvInput());

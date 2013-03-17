@@ -7,16 +7,19 @@ namespace Jfsimon\Work\Model;
  */
 class Repository
 {
+    private $owner;
     private $name;
-    private $urlPattern;
-    private $officialRepo;
     private $branches;
 
-    public function __construct($name, $urlPattern, $officialRepo)
+    public function __construct($owner, $name)
     {
+        $this->owner = $owner;
         $this->name = $name;
-        $this->urlPattern = $urlPattern;
-        $this->officialRepo = $officialRepo;
         $this->branches = new ArrayCollection();
+    }
+
+    public function updateIssue(Issue $issue)
+    {
+
     }
 }

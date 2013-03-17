@@ -17,7 +17,7 @@ class Branch
     private $commits;
     private $stash;
 
-    public function __construct(Repository $repository, $base, $subject, Issue $issue = null)
+    public function __construct(Repository $repository, Reference $base, $subject, Issue $issue = null)
     {
         $this->repository = $repository;
         $this->base = $base;
@@ -28,7 +28,7 @@ class Branch
 
     public function open(GitApiInterface $api)
     {
-        $api->openBranch($this->repository, $this->getBranchName());
+        $api->openBranch($this->getBranchName());
         $api->stashPop($this->stash);
 
         return $this;
@@ -58,8 +58,15 @@ class Branch
         return $this;
     }
 
+    public function rebase(GitApiInterface $api, Reference $reference)
+    {
+        $api->rebase($this->repository, $reference);
+
+        return $this->issue->branch($reference, $this->subject);
+    }
+
     private function getBranchName()
     {
-        return sprintf('issue-%s-%s', $this->issue, $this->base);
+        return sprintf('issue-%s%s', $this->issue, $this->base->getBranchNameSuffix());
     }
 }
